@@ -3,19 +3,20 @@
     <!-- <div data-app style="background-color:powderblue;"> -->
     <v-container fluid style="margin: 0px; padding: 0px; width: 100%">
         <v-layout wrap>
-            <v-app-bar color="#FFC400" class="" dark>
-                <v-btn icon color="#FF0000" :to="{ name: 'profile' , params: { ID_student: ID_student}}">
-                    <v-icon>mdi-account circle</v-icon>
+            <v-app-bar color="" class="">
+                <v-btn icon color="#FF0000" :to="{ name: 'admin_check' , params: { ID_student: ID_student}}" class="">
+                    <v-icon>mdi-arrow-left</v-icon>
                 </v-btn>
 
-                <v-toolbar-title class="white--text" style="white">| หน้าหลัก </v-toolbar-title>
+                <v-toolbar-title class="white--text" style="white"> แผนก IT </v-toolbar-title>
                 <v-spacer></v-spacer>
-                <v-btn icon @click="logout" color="#FF0000">
-                    <v-icon>mdi-logout</v-icon>
-                </v-btn>
+                <v-btn class="mt-0 pb-1 pt-1 pr-1" icon color="#FF0000" :to="{ name: 'admin' , params: { ID_student: ID_student}}">
+                        <v-icon>mdi-home</v-icon>
+                    </v-btn>
+
             </v-app-bar>
 
-            <v-container class="grey lighten-5">
+            <v-container class="grey lighten-5 pb-0">
                 <!-- <v-img lazy-src="https://picsum.photos/id/11/10/6" max-height="150" max-width="500" src="https://picsum.photos/id/11/500/300"></v-img> -->
                 <!-- <v-img lazy-src="https://cdn.chiangmainews.co.th/wp-content/uploads/2020/07/04170055/S__12951581-scaled.jpg" max-height="180" max-width="500" src="http://www.stc.ac.th/files/2009120990337274_2011180660231.jpg"></v-img> -->
                 <!-- <v-img max-height="180" max-width="400" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvVEd5Y0g8lCYFiiCDfeVErgLRw2MHAvQuh3_L0nKcaHSTD3QKUN7g7zhk0FG01Cmuvvc&usqp=CAU"></v-img> -->
@@ -24,85 +25,57 @@
             <v-col class="pb-0 pt-0">
                 <!-- <v-btn @click.prevent="Signin" type="submit" color="#1F7087" block dark>เช็คชื่อ</v-btn> -->
                 <!-- <v-btn @click.prevent="Signin" type="submit" color="#952175" class="mt-2 " block dark>อัลบั้มภาพกิจกรรม ลูกเสือ/รด.</v-btn> -->
-                <v-btn :to="{ name: 'checkAc' , params: { ID_student: ID_student}}" type="submit" color="#FF0000" class="mt-0 " block dark>เช็คกิจกรรม</v-btn>
+                <!-- <v-btn :to="{ name: 'checkAc' , params: { ID_student: ID_student}}" type="submit" color="#FF0000" class="mt-0 " block dark>เช็คกิจกรรม</v-btn> -->
                 <!-- <v-btn :to="{ name: 'checkAc' , params: { ID_student: ID_student}}" dark class="btn-muted sm" outlined rounded small>
 
                     <v-btn @click.prevent="Signin" type="submit" color="#FF0000" class="mt-0 " block dark>เช็คกิจกรรม</v-btn>
 
                 </v-btn> -->
-                <center>
+                <!-- <center>
                     <hr style="height:2px; width:15%" color=#FF0000>
-                </center>
+                </center> -->
             </v-col>
 
-            <v-container class="pt-0">
+            <v-container class="pt-3">
                 <v-row dense>
 
-                    <v-col class="pb-1 font-weight-bold">
+                    <v-col class=" font-weight-bold pb-0">
                         <!-- <h5> &nbsp;&nbsp;กิจกรรม</h5> -->
-                        <h4 class="font-weight-bold pt-0 " align="left" justify="left" dark>
+                        <!-- <h4 class="font-weight-bold pt-0 " align="left" justify="left" dark>
                             <v-btn icon color="#FF0000" @click="ac2">
                                 <v-icon>mdi-dialpad</v-icon>
                             </v-btn>
                             กิจกรรมลูกเสือ - รด.
-                        </h4>
+                        </h4> -->
 
                         <!-- <h4 class="font-weight-bold pt-0 " align="center" justify="center" dark>
                             กิจกรรม
                         </h4> -->
+                        <v-text-field label="วันที่" type="date" min="2000-12-31" max="2021-12-31" outlined dense />
+
                     </v-col>
 
-                    <v-col v-for="(item) in items" :key="item.ID" cols="12">
-                        <v-card color="#E0E0E0" dark height="105">
-                            <div class="d-flex flex-no-wrap justify-space-between text-dark ">
-                                <v-avatar class="" size="105" tile>
-                                    <v-img :src="item.src"></v-img>
-                                </v-avatar>
-                                <div>
-                                    <h6 class="text-h6 pt-2 pb-0 pl-3" v-text="item.title"></h6>
-
-                                    <!-- <v-card-subtitle v-text="item.artist"></v-card-subtitle> -->
-
-                                    <h6 class="ml-3 pt-0 pb-0">...</h6>
-                                    <small v-text="item.artist" class="pl-3 mb-0"></small>
-                                    <!-- <v-btn dark class="btn-muted sm ml-1" @click="editStudent(post.name_coin,ID )" outlined rounded small>
-
-                                    </v-btn> -->
-                                    <!-- &nbsp;&nbsp; -->
-
-                                    <v-dialog :v-model="dialog" width="500">
-                                        <template v-slot:activator="{ on, attrs }">
-                                            <v-btn dark v-bind="attrs" v-on="on" class="btn-muted sm ml-5" align="right" color=#FF0000 justify="right" @click="see" outlined rounded small>
-                                                ดูเพิ่มเติม<v-icon small>mdi-chevron-right</v-icon>
-                                            </v-btn>
-                                        </template>
-
-                                        <v-card>
-                                            <v-card-title style="color: black; background: #e3e5f1;">
-                                                {{ item.title }}
-                                            </v-card-title>
-                                            <v-card-text style="color: black; background: #e3e5f1;">
-                                                <center>
-                                                    <br>
-                                                    <v-avatar class="mb-3" width="250" height="150" tile>
-                                                        <v-img :src="item.src"></v-img>
-                                                    </v-avatar>
-                                                    <br>
-
-                                                    <span class="pt-2"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fuga quae, ab maxime eos quos voluptas reprehenderit praesentium. Quis, doloremque animi nulla quod aperiam aliquid earum voluptatibus dolor aut commodi nobis.</span>
-                                                    <br>
-                                                    <p class="mt-2 mb-0">วันที่ : {{ item.artist }}</p>
-                                                    <p class="mt-1">ณ วิทยาลัยเทคนิคชัยภูมิ</p>
-                                                </center>
-                                            </v-card-text>
-                                        </v-card>
-                                    </v-dialog>
-                                </div>
-
-                            </div>
-                        </v-card>
-                    </v-col>
-
+                    <table class="table">
+                        <!-- <caption>List of users</caption> -->
+                        <thead>
+                            <tr class="table-danger">
+                                <th scope="col">#</th>
+                                <th scope="col">ชื่อ</th>
+                                <th scope="col">สถานะ</th>
+                                <!-- <th scope="col">Handle</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for=" n in checkk " :key="n.id">
+                                <th scope="row">{{n.ID}}</th>
+                                <td>{{n.days}}</td>
+                                <v-select width="20" class="mt-2 " label="" :items="item"  outlined dense  required/>
+                                <!-- <td>{{n.status}}</td> -->
+                                <!-- <td>@mdo</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+<v-btn type="submit" color="#FF0000" block dark>Submit</v-btn>
                 </v-row>
             </v-container>
         </v-layout>
@@ -129,6 +102,7 @@ export default {
         Password: '',
         Status: '',
         numm: '',
+        item: ['ขาด', 'ลา', 'มา', 'สาย'],
 
         model: null,
 
@@ -145,31 +119,77 @@ export default {
                 color: '#1F7087',
                 src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ75gy3VVt6vIo4nx0jbjB97O6sc95YQHpMP6fl82LcqKGy9Gg3w8h-RpshCLcca4S4x5E&usqp=CAU',
                 title: 'กิจกรรมเดินสนาม',
-                artist: '20 พ.ค. 65',
+                artist: 'นายปฎิมากร',
                 ID: 1
             },
             {
                 color: '#952175',
                 src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRc2LrwdJuERyjrlodDiqkUm61mFLcgwXUPlg&usqp=CAU',
                 title: 'พิธีประจำการลูกเสือ เนตรนารี ',
-                artist: '20 พ.ค. 65',
+                artist: 'นายอภิรักษ์',
                 ID: 2
             },
             {
                 color: '#952175',
                 src: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSXsHEUYJgF-CqfpKnyU8E3WOqprGUCQxzIrw&usqp=CAU',
                 title: 'กิจกรรมเข้าค่ายลูกเสือ',
-                artist: '20 พ.ค. 65',
+                artist: 'นายธนโชติ',
                 ID: 3
             },
             {
                 color: '#952175',
                 src: 'https://i.ytimg.com/vi/MgtN3eNKjRw/maxresdefault.jpg',
                 title: 'กิจกรรมเดินทางไกล',
-                artist: '20 พ.ค. 65',
+                artist: 'นายปิยศักดิ์',
                 ID: 4
             },
+            ],
+            checkk: [{
+                
+                status: 'มา',
+                days: 'นายภูรินทร์',
+                ID: 1
+            },
+            {
+                
+                status: 'มา',
+                days: 'นายณัฐดนัย',
+                ID: 2
+            },
+            {
+                status: 'ขาด',
+                days: 'นายภัทรพงษ์',
+                ID: 3
+            },
+            {
+                status: 'สาย', days: 'นายกฤษฎา',ID: 4
+            },
+            {
+                status: 'มา', days: 'นายวันชัย',ID: 5
+            },
+            {
+                status: 'มา', days: 'นางสาวกาญจนา',ID: 6
+            },
+            {
+                status: 'มา', days: 'นายบดินทร์',ID: 7
+            },
+            {
+                status: 'ขาด', days: 'นายภาณุรัตน์',ID: 8
+            },
+            {
+                status: 'มา', days: 'นายกรณพัฒน์',ID: 9
+            },
+            {
+                status: 'ขาด', days: 'นายถิรชน',ID: 10
+            },
+            {
+                status: 'มา', days: 'นายจักริน',ID: 11
+            },
+            {
+                status: 'มา', days: 'นายภูรี',ID: 12
+            },
         ],
+        
 
         length: 3,
         onboarding: 0,
@@ -201,35 +221,13 @@ export default {
             this.Class = data.rows[0][0].Class
             this.Department = data.rows[0][0].Department
 
-            console.log('data', data.rows[0][0])
+            console.log('sdfsdf', data.rows[0][0])
 
+           
         }
     },
     methods: {
-        logout() {
-            window.sessionStorage.removeItem('ID_student')
-            return this.$router.push('/')
-        },
-
-        next() {
-            this.onboarding = this.onboarding + 1 === this.length ?
-                0 :
-                this.onboarding + 1
-        },
-        prev() {
-            this.onboarding = this.onboarding - 1 < 0 ?
-                this.length - 1 :
-                this.onboarding - 1
-        },
-        ac2() {
-            this.$router.push('Proflie')
-        },
-        see() {
-            this.dialog = true
-        },
-        see2() {
-            this.dialog = false
-        },
+    
     },
 }
 </script>
